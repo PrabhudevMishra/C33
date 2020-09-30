@@ -21,7 +21,6 @@ function setup(){
     engine = Engine.create();
     world = engine.world;
 
-
     ground = new Ground(600,height,1200,20);
     platform = new Ground(150, 305, 300, 170);
 
@@ -83,6 +82,7 @@ function draw(){
 function mouseDragged(){
     //if (gameState!=="launched"){
         Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+        //bird.trajectory.length = null;
     //}
 }
 
@@ -94,6 +94,8 @@ function mouseReleased(){
 
 function keyPressed(){
     if(keyCode === 32){
+       bird.trajectory = [];
+       Matter.Body.setPosition(bird.body, {x: 200, y: 50});
        slingshot.attach(bird.body);
     }
 }
